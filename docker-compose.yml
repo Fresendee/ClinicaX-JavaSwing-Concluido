@@ -1,0 +1,25 @@
+services:
+  clinicax:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: clinicax-app
+    image: clinicax:latest
+    
+    # Configuração para suporte a GUI (X11)
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+    
+    # Compartilhar o socket X11 para exibir a interface gráfica
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    
+    # Permitir acesso ao servidor X11
+    network_mode: host
+    
+    # Manter o container em execução
+    stdin_open: true
+    tty: true
+    
+    # Política de reinicialização
+    restart: unless-stopped

@@ -1,0 +1,11 @@
+# Ignorar arquivos desnecessários no build do Docker
+build/
+dist/
+nbproject/private/
+*.db
+*.log
+.DS_Store
+.idea/
+*.iml
+*.swp
+*~

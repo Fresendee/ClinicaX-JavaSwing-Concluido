@@ -1,0 +1,57 @@
+=================================================================
+ARQUIVOS ADICIONADOS AO PROJETO CLINICAX
+=================================================================
+
+DATA: Novembro 2025
+FUNCIONALIDADES: Atendimentos e Prontuários Médicos
+
+-----------------------------------------------------------------
+MODELS (src/model/)
+-----------------------------------------------------------------
+✓ Atendimento.java          - Classe de domínio para Atendimentos
+✓ Prontuario.java           - Classe de domínio para Prontuários
+
+-----------------------------------------------------------------
+DAOs (src/dao/)
+-----------------------------------------------------------------
+✓ Atendimentodao.java       - Persistência de Atendimentos
+✓ Prontuariodao.java        - Persistência de Prontuários
+
+-----------------------------------------------------------------
+VIEWS (src/view/)
+-----------------------------------------------------------------
+✓ Atendimentos.java         - Interface gráfica de Atendimentos
+✓ Prontuarios.java          - Interface gráfica de Prontuários
+
+-----------------------------------------------------------------
+DOCUMENTAÇÃO
+-----------------------------------------------------------------
+✓ NOVAS-FUNCIONALIDADES.md  - Documentação completa
+✓ RESUMO-ALTERACOES.md      - Resumo executivo
+✓ ARQUIVOS-NOVOS.txt        - Este arquivo
+
+-----------------------------------------------------------------
+ARQUIVOS MODIFICADOS
+-----------------------------------------------------------------
+✓ src/App.java              - Menu principal atualizado
+✓ src/dao/DatabaseInitializer.java - Novas tabelas adicionadas
+
+-----------------------------------------------------------------
+ESTATÍSTICAS
+-----------------------------------------------------------------
+Arquivos novos:     8
+Arquivos modificados: 2
+Linhas de código:   ~2.400
+Tabelas BD:         2 (atendimentos, prontuarios)
+
+-----------------------------------------------------------------
+FUNCIONALIDADES
+-----------------------------------------------------------------
+✓ CRUD completo de Atendimentos
+✓ CRUD completo de Prontuários
+✓ Cálculo automático de IMC
+✓ Interface com abas
+✓ Validações de dados
+✓ Relacionamentos entre entidades
+
+=================================================================
