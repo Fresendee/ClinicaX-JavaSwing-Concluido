@@ -60,13 +60,10 @@ public class Consultas extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
         
-        // Painel superior - Formulário
         add(criarPainelFormulario(), BorderLayout.NORTH);
         
-        // Painel central - Tabela
         add(criarPainelTabela(), BorderLayout.CENTER);
         
-        // Painel inferior - Botões
         add(criarPainelBotoes(), BorderLayout.SOUTH);
     }
     
@@ -102,7 +99,6 @@ public class Consultas extends JFrame {
     private JPanel criarPainelTabela() {
         JPanel painel = new JPanel(new BorderLayout(5, 5));
         
-        // Painel de busca
         JPanel painelBusca = new JPanel(new FlowLayout(FlowLayout.LEFT));
         painelBusca.add(new JLabel("Buscar por paciente:"));
 	        painelBusca.setBackground(Color.WHITE);
@@ -117,7 +113,6 @@ public class Consultas extends JFrame {
         
         painel.add(painelBusca, BorderLayout.NORTH);
         
-        // Tabela
         String[] colunas = {"ID", "Paciente", "Médico", "Data", "Hora", "Observações", "ID Paciente", "ID Médico"};
         modeloTabela = new DefaultTableModel(colunas, 0) {
             @Override
@@ -139,7 +134,6 @@ public class Consultas extends JFrame {
             }
         });
         
-        // Esconder colunas de ID
         tabela.getColumnModel().getColumn(6).setMinWidth(0);
         tabela.getColumnModel().getColumn(6).setMaxWidth(0);
         tabela.getColumnModel().getColumn(6).setWidth(0);
@@ -201,7 +195,6 @@ public class Consultas extends JFrame {
         mapPacientes.clear();
         mapMedicos.clear();
         
-        // Carregar Pacientes
         ArrayList<Paciente> pacientes = pacienteDao.listarTodos();
         for (Paciente p : pacientes) {
             String nome = p.getNome() + " (CPF: " + p.getCpf() + ")";
@@ -209,7 +202,6 @@ public class Consultas extends JFrame {
             mapPacientes.put(nome, p.getId());
         }
         
-        // Carregar Médicos
         ArrayList<Medico> medicos = medicoDao.listarTodos();
         for (Medico m : medicos) {
             String nome = m.getNome() + " (CRM: " + m.getCrm() + ")";
@@ -223,7 +215,6 @@ public class Consultas extends JFrame {
         ArrayList<Consulta> lista = consultaDao.listar();
         
         for (Consulta c : lista) {
-            // Busca os nomes para exibição
             String nomePaciente = pacienteDao.buscarPorId(c.getIdPaciente()).getNome();
             String nomeMedico = medicoDao.buscarPorId(c.getIdMedico()).getNome();
             
@@ -351,11 +342,9 @@ public class Consultas extends JFrame {
         if (linha != -1) {
             idSelecionado = (int) modeloTabela.getValueAt(linha, 0);
             
-            // Busca os IDs das colunas escondidas
             int idPaciente = (int) modeloTabela.getValueAt(linha, 6);
             int idMedico = (int) modeloTabela.getValueAt(linha, 7);
             
-            // Seleciona o item correto no ComboBox
             for (Map.Entry<String, Integer> entry : mapPacientes.entrySet()) {
                 if (entry.getValue().equals(idPaciente)) {
                     cmbPaciente.setSelectedItem(entry.getKey());
