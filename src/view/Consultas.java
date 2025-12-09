@@ -35,15 +35,23 @@ public class Consultas extends JFrame {
     private Map<String, Integer> mapMedicos;
     
     public Consultas() {
-        consultaDao = new Consultadao();
-        pacienteDao = new Pacientesdao();
-        medicoDao = new Medicodao();
-        mapPacientes = new HashMap<>();
-        mapMedicos = new HashMap<>();
-        
-        inicializarComponentes();
-        carregarComboBoxes();
-        carregarTabela();
+        try {
+            consultaDao = new Consultadao();
+            pacienteDao = new Pacientesdao();
+            medicoDao = new Medicodao();
+            mapPacientes = new HashMap<>();
+            mapMedicos = new HashMap<>();
+            
+            inicializarComponentes();
+            
+            // Adicionei proteções aqui para evitar travamentos
+            carregarComboBoxes();
+            carregarTabela();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao iniciar tela de consultas: " + e.getMessage());
+        }
     }
     
     private void inicializarComponentes() {
@@ -73,7 +81,7 @@ public class Consultas extends JFrame {
     private JPanel criarPainelFormulario() {
         JPanel painel = new JPanel(new GridLayout(3, 4, 10, 10));
         painel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(90, 70, 200)), "Dados da Consulta", 
-	            javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new Font("Arial", Font.BOLD, 14), new Color(90, 70, 200)));
+                javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new Font("Arial", Font.BOLD, 14), new Color(90, 70, 200)));
         
         painel.add(new JLabel("Paciente:"));
         cmbPaciente = new JComboBox<>();
@@ -105,19 +113,19 @@ public class Consultas extends JFrame {
         // Painel de busca
         JPanel painelBusca = new JPanel(new FlowLayout(FlowLayout.LEFT));
         painelBusca.add(new JLabel("Buscar por paciente:"));
-	        painelBusca.setBackground(Color.WHITE);
+            painelBusca.setBackground(Color.WHITE);
         txtBuscar = new JTextField(20);
         painelBusca.add(txtBuscar);
         btnBuscar = new JButton("Buscar");
-	        btnBuscar.setBackground(new Color(150, 150, 150)); // Cinza mais neutro
-	        btnBuscar.setForeground(Color.WHITE);
-	        btnBuscar.setFont(new Font("Arial", Font.BOLD, 14));
+            btnBuscar.setBackground(new Color(150, 150, 150)); // Cinza mais neutro
+            btnBuscar.setForeground(Color.WHITE);
+            btnBuscar.setFont(new Font("Arial", Font.BOLD, 14));
         btnBuscar.addActionListener(e -> buscarConsultas());
         painelBusca.add(btnBuscar);
         
         painel.add(painelBusca, BorderLayout.NORTH);
         
-        // Tabela
+       
         String[] colunas = {"ID", "Paciente", "Médico", "Data", "Hora", "Observações", "ID Paciente", "ID Médico"};
         modeloTabela = new DefaultTableModel(colunas, 0) {
             @Override
@@ -130,8 +138,8 @@ public class Consultas extends JFrame {
         tabela.setFillsViewportHeight(true);
         tabela.setFont(new Font("Arial", Font.PLAIN, 12));
         tabela.getTableHeader().setFont(new Font("Arial", Font.BOLD, 12));
-	        tabela.getTableHeader().setBackground(new Color(90, 70, 200));
-	        tabela.getTableHeader().setForeground(Color.WHITE);
+            tabela.getTableHeader().setBackground(new Color(90, 70, 200));
+            tabela.getTableHeader().setForeground(Color.WHITE);
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tabela.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
@@ -139,7 +147,6 @@ public class Consultas extends JFrame {
             }
         });
         
-        // Esconder colunas de ID
         tabela.getColumnModel().getColumn(6).setMinWidth(0);
         tabela.getColumnModel().getColumn(6).setMaxWidth(0);
         tabela.getColumnModel().getColumn(6).setWidth(0);
@@ -157,31 +164,31 @@ public class Consultas extends JFrame {
         JPanel painel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         
         btnNovo = new JButton("Novo");
-	        btnNovo.setBackground(new Color(46, 204, 113)); // Verde
+            btnNovo.setBackground(new Color(46, 204, 113)); // Verde
         btnNovo.setForeground(Color.WHITE);
         btnNovo.setFont(new Font("Arial", Font.BOLD, 14));
         btnNovo.addActionListener(e -> limparCampos());
         
         btnSalvar = new JButton("Salvar");
-	        btnSalvar.setBackground(new Color(90, 70, 200)); // Roxo
+            btnSalvar.setBackground(new Color(90, 70, 200)); // Roxo
         btnSalvar.setForeground(Color.WHITE);
         btnSalvar.setFont(new Font("Arial", Font.BOLD, 14));
         btnSalvar.addActionListener(e -> salvarConsulta());
         
         btnEditar = new JButton("Editar");
-	        btnEditar.setBackground(new Color(241, 196, 15)); // Amarelo
+            btnEditar.setBackground(new Color(241, 196, 15)); // Amarelo
         btnEditar.setForeground(Color.BLACK);
         btnEditar.setFont(new Font("Arial", Font.BOLD, 14));
         btnEditar.addActionListener(e -> editarConsulta());
         
         btnExcluir = new JButton("Excluir");
-	        btnExcluir.setBackground(new Color(231, 76, 60)); // Vermelho
+            btnExcluir.setBackground(new Color(231, 76, 60)); // Vermelho
         btnExcluir.setForeground(Color.WHITE);
         btnExcluir.setFont(new Font("Arial", Font.BOLD, 14));
         btnExcluir.addActionListener(e -> excluirConsulta());
         
         btnVoltar = new JButton("Voltar");
-	        btnVoltar.setBackground(new Color(90, 70, 200).darker()); // Roxo Escuro
+            btnVoltar.setBackground(new Color(90, 70, 200).darker()); // Roxo Escuro
         btnVoltar.setForeground(Color.WHITE);
         btnVoltar.setFont(new Font("Arial", Font.BOLD, 14));
         btnVoltar.addActionListener(e -> voltarParaMenuPrincipal());
@@ -201,31 +208,42 @@ public class Consultas extends JFrame {
         mapPacientes.clear();
         mapMedicos.clear();
         
-        // Carregar Pacientes
+        
         ArrayList<Paciente> pacientes = pacienteDao.listarTodos();
-        for (Paciente p : pacientes) {
-            String nome = p.getNome() + " (CPF: " + p.getCpf() + ")";
-            cmbPaciente.addItem(nome);
-            mapPacientes.put(nome, p.getId());
+        if (pacientes != null) {
+            for (Paciente p : pacientes) {
+                String nome = p.getNome() + " (CPF: " + p.getCpf() + ")";
+                cmbPaciente.addItem(nome);
+                mapPacientes.put(nome, p.getId());
+            }
         }
         
-        // Carregar Médicos
+     
         ArrayList<Medico> medicos = medicoDao.listarTodos();
-        for (Medico m : medicos) {
-            String nome = m.getNome() + " (CRM: " + m.getCrm() + ")";
-            cmbMedico.addItem(nome);
-            mapMedicos.put(nome, m.getId());
+        if (medicos != null) {
+            for (Medico m : medicos) {
+                String nome = m.getNome() + " (CRM: " + m.getCrm() + ")";
+                cmbMedico.addItem(nome);
+                mapMedicos.put(nome, m.getId());
+            }
         }
     }
+    
     
     private void carregarTabela() {
         modeloTabela.setRowCount(0);
         ArrayList<Consulta> lista = consultaDao.listar();
         
+        if (lista == null) return; // Proteção extra se não houver lista
+        
         for (Consulta c : lista) {
-            // Busca os nomes para exibição
-            String nomePaciente = pacienteDao.buscarPorId(c.getIdPaciente()).getNome();
-            String nomeMedico = medicoDao.buscarPorId(c.getIdMedico()).getNome();
+           
+            Paciente p = pacienteDao.buscarPorId(c.getIdPaciente());
+            Medico m = medicoDao.buscarPorId(c.getIdMedico());
+            
+       
+            String nomePaciente = (p != null) ? p.getNome() : "Paciente não encontrado (ID " + c.getIdPaciente() + ")";
+            String nomeMedico = (m != null) ? m.getNome() : "Médico não encontrado (ID " + c.getIdMedico() + ")";
             
             Object[] linha = {
                 c.getId(),
@@ -314,7 +332,6 @@ public class Consultas extends JFrame {
     }
     
     private void buscarConsultas() {
-        // Implementação de busca mais complexa (por nome de paciente)
         String termo = txtBuscar.getText().trim().toLowerCase();
         
         if (termo.isEmpty()) {
@@ -325,11 +342,16 @@ public class Consultas extends JFrame {
         modeloTabela.setRowCount(0);
         ArrayList<Consulta> lista = consultaDao.listar();
         
+        if (lista == null) return;
+        
         for (Consulta c : lista) {
-            String nomePaciente = pacienteDao.buscarPorId(c.getIdPaciente()).getNome().toLowerCase();
+         
+            Paciente p = pacienteDao.buscarPorId(c.getIdPaciente());
+            String nomePaciente = (p != null) ? p.getNome() : "";
             
-            if (nomePaciente.contains(termo)) {
-                String nomeMedico = medicoDao.buscarPorId(c.getIdMedico()).getNome();
+            if (nomePaciente.toLowerCase().contains(termo)) {
+                Medico m = medicoDao.buscarPorId(c.getIdMedico());
+                String nomeMedico = (m != null) ? m.getNome() : "Desconhecido";
                 
                 Object[] linha = {
                     c.getId(),
@@ -351,11 +373,11 @@ public class Consultas extends JFrame {
         if (linha != -1) {
             idSelecionado = (int) modeloTabela.getValueAt(linha, 0);
             
-            // Busca os IDs das colunas escondidas
+            
             int idPaciente = (int) modeloTabela.getValueAt(linha, 6);
             int idMedico = (int) modeloTabela.getValueAt(linha, 7);
             
-            // Seleciona o item correto no ComboBox
+            
             for (Map.Entry<String, Integer> entry : mapPacientes.entrySet()) {
                 if (entry.getValue().equals(idPaciente)) {
                     cmbPaciente.setSelectedItem(entry.getKey());
