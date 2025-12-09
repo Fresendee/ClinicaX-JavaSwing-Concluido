@@ -6,9 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Classe DAO para gerenciar operações de Atendimento no banco de dados
- */
+
 public class Atendimentodao {
     
     // Inserir novo atendimento
@@ -45,7 +43,7 @@ public class Atendimentodao {
         }
     }
     
-    // Atualizar atendimento existente
+  
     public boolean atualizar(Atendimento atendimento) {
         String sql = "UPDATE atendimentos SET paciente_id = ?, medico_id = ?, " +
                     "data_hora_atendimento = ?, tipo_atendimento = ?, motivo_atendimento = ?, " +
@@ -81,7 +79,7 @@ public class Atendimentodao {
         }
     }
     
-    // Excluir atendimento
+    
     public boolean excluir(int id) {
         String sql = "DELETE FROM atendimentos WHERE id = ?";
         
@@ -98,7 +96,7 @@ public class Atendimentodao {
         }
     }
     
-    // Listar todos os atendimentos
+    
     public List<Atendimento> listarTodos() {
         List<Atendimento> atendimentos = new ArrayList<>();
         String sql = "SELECT * FROM atendimentos ORDER BY data_hora_atendimento DESC";
@@ -118,7 +116,7 @@ public class Atendimentodao {
         return atendimentos;
     }
     
-    // Buscar atendimento por ID
+    
     public Atendimento buscarPorId(int id) {
         String sql = "SELECT * FROM atendimentos WHERE id = ?";
         
@@ -139,7 +137,7 @@ public class Atendimentodao {
         return null;
     }
     
-    // Buscar atendimentos por paciente
+    
     public List<Atendimento> buscarPorPaciente(int pacienteId) {
         List<Atendimento> atendimentos = new ArrayList<>();
         String sql = "SELECT * FROM atendimentos WHERE paciente_id = ? ORDER BY data_hora_atendimento DESC";
@@ -161,7 +159,7 @@ public class Atendimentodao {
         return atendimentos;
     }
     
-    // Buscar atendimentos por médico
+    
     public List<Atendimento> buscarPorMedico(int medicoId) {
         List<Atendimento> atendimentos = new ArrayList<>();
         String sql = "SELECT * FROM atendimentos WHERE medico_id = ? ORDER BY data_hora_atendimento DESC";
@@ -183,7 +181,7 @@ public class Atendimentodao {
         return atendimentos;
     }
     
-    // Buscar atendimentos por status
+    
     public List<Atendimento> buscarPorStatus(String status) {
         List<Atendimento> atendimentos = new ArrayList<>();
         String sql = "SELECT * FROM atendimentos WHERE status = ? ORDER BY data_hora_atendimento DESC";
@@ -205,7 +203,7 @@ public class Atendimentodao {
         return atendimentos;
     }
     
-    // Método auxiliar para extrair atendimento do ResultSet
+    
     private Atendimento extrairAtendimento(ResultSet rs) throws SQLException {
         Atendimento atendimento = new Atendimento();
         atendimento.setId(rs.getInt("id"));

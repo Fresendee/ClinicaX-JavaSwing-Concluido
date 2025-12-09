@@ -62,7 +62,6 @@ public class Atendimentos extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
         
-        // Painel superior com título e botão Voltar
         JPanel painelTitulo = new JPanel(new BorderLayout());
         painelTitulo.setBackground(new Color(90, 70, 200));
         
@@ -85,20 +84,16 @@ public class Atendimentos extends JFrame {
         painelTitulo.add(lblTitulo, BorderLayout.CENTER);
         add(painelTitulo, BorderLayout.NORTH);
         
-        // Painel central com formulário e tabela
         JPanel painelCentral = new JPanel(new GridLayout(1, 2, 10, 10));
         
-        // Painel do formulário
         JPanel painelFormulario = criarPainelFormulario();
         painelCentral.add(new JScrollPane(painelFormulario));
         
-        // Painel da tabela
         JPanel painelTabela = criarPainelTabela();
         painelCentral.add(painelTabela);
         
         add(painelCentral, BorderLayout.CENTER);
         
-        // Painel inferior com botões
         JPanel painelBotoes = criarPainelBotoes();
         add(painelBotoes, BorderLayout.SOUTH);
     }
@@ -111,7 +106,6 @@ public class Atendimentos extends JFrame {
         
         int linha = 0;
         
-        // Paciente
         gbc.gridx = 0; gbc.gridy = linha;
         painel.add(new JLabel("Paciente:"), gbc);
         gbc.gridx = 1;
@@ -119,7 +113,6 @@ public class Atendimentos extends JFrame {
         painel.add(cbPaciente, gbc);
         linha++;
         
-        // Médico
         gbc.gridx = 0; gbc.gridy = linha;
         painel.add(new JLabel("Médico:"), gbc);
         gbc.gridx = 1;
@@ -127,7 +120,6 @@ public class Atendimentos extends JFrame {
         painel.add(cbMedico, gbc);
         linha++;
         
-        // Tipo de Atendimento
         gbc.gridx = 0; gbc.gridy = linha;
         painel.add(new JLabel("Tipo:"), gbc);
         gbc.gridx = 1;
@@ -135,7 +127,6 @@ public class Atendimentos extends JFrame {
         painel.add(cbTipoAtendimento, gbc);
         linha++;
         
-        // Motivo
         gbc.gridx = 0; gbc.gridy = linha;
         painel.add(new JLabel("Motivo:"), gbc);
         gbc.gridx = 1;
@@ -143,7 +134,6 @@ public class Atendimentos extends JFrame {
         painel.add(txtMotivo, gbc);
         linha++;
         
-        // Sintomas
         gbc.gridx = 0; gbc.gridy = linha;
         painel.add(new JLabel("Sintomas:"), gbc);
         gbc.gridx = 1;
@@ -151,7 +141,6 @@ public class Atendimentos extends JFrame {
         painel.add(new JScrollPane(txtSintomas), gbc);
         linha++;
         
-        // Diagnóstico
         gbc.gridx = 0; gbc.gridy = linha;
         painel.add(new JLabel("Diagnóstico:"), gbc);
         gbc.gridx = 1;
@@ -159,7 +148,6 @@ public class Atendimentos extends JFrame {
         painel.add(new JScrollPane(txtDiagnostico), gbc);
         linha++;
         
-        // Prescrição
         gbc.gridx = 0; gbc.gridy = linha;
         painel.add(new JLabel("Prescrição:"), gbc);
         gbc.gridx = 1;
@@ -167,7 +155,6 @@ public class Atendimentos extends JFrame {
         painel.add(new JScrollPane(txtPrescricao), gbc);
         linha++;
         
-        // Exames Solicitados
         gbc.gridx = 0; gbc.gridy = linha;
         painel.add(new JLabel("Exames:"), gbc);
         gbc.gridx = 1;
@@ -175,7 +162,6 @@ public class Atendimentos extends JFrame {
         painel.add(new JScrollPane(txtExames), gbc);
         linha++;
         
-        // Status
         gbc.gridx = 0; gbc.gridy = linha;
         painel.add(new JLabel("Status:"), gbc);
         gbc.gridx = 1;
@@ -183,7 +169,6 @@ public class Atendimentos extends JFrame {
         painel.add(cbStatus, gbc);
         linha++;
         
-        // Valor
         gbc.gridx = 0; gbc.gridy = linha;
         painel.add(new JLabel("Valor (R$):"), gbc);
         gbc.gridx = 1;
@@ -191,7 +176,6 @@ public class Atendimentos extends JFrame {
         painel.add(txtValor, gbc);
         linha++;
         
-        // Forma de Pagamento
         gbc.gridx = 0; gbc.gridy = linha;
         painel.add(new JLabel("Pagamento:"), gbc);
         gbc.gridx = 1;
@@ -199,7 +183,6 @@ public class Atendimentos extends JFrame {
         painel.add(cbFormaPagamento, gbc);
         linha++;
         
-        // Observações
         gbc.gridx = 0; gbc.gridy = linha;
         painel.add(new JLabel("Observações:"), gbc);
         gbc.gridx = 1;
@@ -207,7 +190,6 @@ public class Atendimentos extends JFrame {
         painel.add(new JScrollPane(txtObservacoes), gbc);
         linha++;
         
-        // Atendimento Realizado
         gbc.gridx = 0; gbc.gridy = linha;
         gbc.gridwidth = 2;
         chkRealizado = new JCheckBox("Atendimento Realizado");

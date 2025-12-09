@@ -41,13 +41,10 @@ public class Especialidades extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
         
-        // Painel superior - Formulário
         add(criarPainelFormulario(), BorderLayout.NORTH);
         
-        // Painel central - Tabela
         add(criarPainelTabela(), BorderLayout.CENTER);
         
-        // Painel inferior - Botões
         add(criarPainelBotoes(), BorderLayout.SOUTH);
     }
     
@@ -66,7 +63,6 @@ public class Especialidades extends JFrame {
     private JPanel criarPainelTabela() {
         JPanel painel = new JPanel(new BorderLayout(5, 5));
         
-        // Painel de busca
         JPanel painelBusca = new JPanel(new FlowLayout(FlowLayout.LEFT));
         painelBusca.add(new JLabel("Buscar por nome:"));
 	        painelBusca.setBackground(Color.WHITE);
@@ -81,7 +77,6 @@ public class Especialidades extends JFrame {
         
         painel.add(painelBusca, BorderLayout.NORTH);
         
-        // Tabela
         String[] colunas = {"ID", "Nome da Especialidade"};
         modeloTabela = new DefaultTableModel(colunas, 0) {
             @Override

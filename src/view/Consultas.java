@@ -68,13 +68,10 @@ public class Consultas extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
         
-        // Painel superior - Formulário
         add(criarPainelFormulario(), BorderLayout.NORTH);
         
-        // Painel central - Tabela
         add(criarPainelTabela(), BorderLayout.CENTER);
         
-        // Painel inferior - Botões
         add(criarPainelBotoes(), BorderLayout.SOUTH);
     }
     
@@ -110,7 +107,6 @@ public class Consultas extends JFrame {
     private JPanel criarPainelTabela() {
         JPanel painel = new JPanel(new BorderLayout(5, 5));
         
-        // Painel de busca
         JPanel painelBusca = new JPanel(new FlowLayout(FlowLayout.LEFT));
         painelBusca.add(new JLabel("Buscar por paciente:"));
             painelBusca.setBackground(Color.WHITE);
@@ -125,7 +121,10 @@ public class Consultas extends JFrame {
         
         painel.add(painelBusca, BorderLayout.NORTH);
         
+<<<<<<< HEAD
        
+=======
+>>>>>>> 7e5af3e4cced2e35a2cea875fc0b1d00e742477e
         String[] colunas = {"ID", "Paciente", "Médico", "Data", "Hora", "Observações", "ID Paciente", "ID Médico"};
         modeloTabela = new DefaultTableModel(colunas, 0) {
             @Override
@@ -208,7 +207,10 @@ public class Consultas extends JFrame {
         mapPacientes.clear();
         mapMedicos.clear();
         
+<<<<<<< HEAD
         
+=======
+>>>>>>> 7e5af3e4cced2e35a2cea875fc0b1d00e742477e
         ArrayList<Paciente> pacientes = pacienteDao.listarTodos();
         if (pacientes != null) {
             for (Paciente p : pacientes) {
@@ -218,7 +220,10 @@ public class Consultas extends JFrame {
             }
         }
         
+<<<<<<< HEAD
      
+=======
+>>>>>>> 7e5af3e4cced2e35a2cea875fc0b1d00e742477e
         ArrayList<Medico> medicos = medicoDao.listarTodos();
         if (medicos != null) {
             for (Medico m : medicos) {
@@ -237,6 +242,7 @@ public class Consultas extends JFrame {
         if (lista == null) return; // Proteção extra se não houver lista
         
         for (Consulta c : lista) {
+<<<<<<< HEAD
            
             Paciente p = pacienteDao.buscarPorId(c.getIdPaciente());
             Medico m = medicoDao.buscarPorId(c.getIdMedico());
@@ -244,6 +250,10 @@ public class Consultas extends JFrame {
        
             String nomePaciente = (p != null) ? p.getNome() : "Paciente não encontrado (ID " + c.getIdPaciente() + ")";
             String nomeMedico = (m != null) ? m.getNome() : "Médico não encontrado (ID " + c.getIdMedico() + ")";
+=======
+            String nomePaciente = pacienteDao.buscarPorId(c.getIdPaciente()).getNome();
+            String nomeMedico = medicoDao.buscarPorId(c.getIdMedico()).getNome();
+>>>>>>> 7e5af3e4cced2e35a2cea875fc0b1d00e742477e
             
             Object[] linha = {
                 c.getId(),
@@ -373,11 +383,17 @@ public class Consultas extends JFrame {
         if (linha != -1) {
             idSelecionado = (int) modeloTabela.getValueAt(linha, 0);
             
+<<<<<<< HEAD
             
             int idPaciente = (int) modeloTabela.getValueAt(linha, 6);
             int idMedico = (int) modeloTabela.getValueAt(linha, 7);
             
             
+=======
+            int idPaciente = (int) modeloTabela.getValueAt(linha, 6);
+            int idMedico = (int) modeloTabela.getValueAt(linha, 7);
+            
+>>>>>>> 7e5af3e4cced2e35a2cea875fc0b1d00e742477e
             for (Map.Entry<String, Integer> entry : mapPacientes.entrySet()) {
                 if (entry.getValue().equals(idPaciente)) {
                     cmbPaciente.setSelectedItem(entry.getKey());

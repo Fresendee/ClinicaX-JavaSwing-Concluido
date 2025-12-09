@@ -26,14 +26,13 @@ public class Login extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // Painel Principal com GridBagLayout para centralizar
         JPanel painelPrincipal = new JPanel(new GridBagLayout());
         painelPrincipal.setBackground(Color.WHITE);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // Título
+        
         JLabel lblTitulo = new JLabel("Acesso ao Sistema", SwingConstants.CENTER);
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 20));
         lblTitulo.setForeground(new Color(90, 70, 200));
@@ -42,7 +41,6 @@ public class Login extends JFrame {
         gbc.gridwidth = 2;
         painelPrincipal.add(lblTitulo, gbc);
 
-        // Campo Login
         gbc.gridwidth = 1;
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -52,7 +50,6 @@ public class Login extends JFrame {
         txtLogin = new JTextField(15);
         painelPrincipal.add(txtLogin, gbc);
 
-        // Campo Senha
         gbc.gridx = 0;
         gbc.gridy = 2;
         painelPrincipal.add(new JLabel("Senha:"), gbc);
@@ -61,7 +58,6 @@ public class Login extends JFrame {
         txtSenha = new JPasswordField(15);
         painelPrincipal.add(txtSenha, gbc);
 
-        // Botão Login
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.gridwidth = 2;
@@ -77,11 +73,8 @@ public class Login extends JFrame {
         });
         painelPrincipal.add(btnLogin, gbc);
         
-        // Adiciona o painel principal ao centro do JFrame
         add(painelPrincipal, BorderLayout.CENTER);
         
-        // Adiciona um painel de rodapé simples
-        // Adiciona um painel de rodapé simples
         JPanel painelRodape = new JPanel();
         painelRodape.setBackground(new Color(90, 70, 200));
         JLabel lblRodape = new JLabel("© Clinicax");
@@ -100,10 +93,8 @@ public class Login extends JFrame {
         if (usuario != null) {
             JOptionPane.showMessageDialog(this, "Login realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             
-            // Fecha a tela de login
             this.dispose();
             
-            // Abre a tela principal
             App app = new App();
             app.setVisible(true);
             
@@ -115,7 +106,6 @@ public class Login extends JFrame {
     }
 
     public static void main(String[] args) {
-        // Aplica o Nimbus Look and Feel
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (Exception e) {

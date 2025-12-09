@@ -11,19 +11,18 @@ public class Atendimento {
     private int pacienteId;
     private int medicoId;
     private LocalDateTime dataHoraAtendimento;
-    private String tipoAtendimento; // Consulta, Retorno, Emergência, Exame
+    private String tipoAtendimento; 
     private String motivoAtendimento;
     private String sintomas;
     private String diagnosticoInicial;
     private String prescricao;
     private String examesSolicitados;
     private String observacoes;
-    private String status; // Aguardando, Em Atendimento, Finalizado, Cancelado
+    private String status; 
     private double valorAtendimento;
-    private String formaPagamento; // Dinheiro, Cartão, Convênio, PIX
+    private String formaPagamento; 
     private boolean atendimentoRealizado;
     
-    // Construtores
     public Atendimento() {
         this.dataHoraAtendimento = LocalDateTime.now();
         this.status = "Aguardando";
@@ -52,7 +51,6 @@ public class Atendimento {
         this.atendimentoRealizado = atendimentoRealizado;
     }
     
-    // Getters e Setters
     public int getId() {
         return id;
     }
