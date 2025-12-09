@@ -68,10 +68,13 @@ public class Consultas extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
         
+        // Painel superior - Formulário
         add(criarPainelFormulario(), BorderLayout.NORTH);
         
+        // Painel central - Tabela
         add(criarPainelTabela(), BorderLayout.CENTER);
         
+        // Painel inferior - Botões
         add(criarPainelBotoes(), BorderLayout.SOUTH);
     }
     
@@ -107,6 +110,7 @@ public class Consultas extends JFrame {
     private JPanel criarPainelTabela() {
         JPanel painel = new JPanel(new BorderLayout(5, 5));
         
+        // Painel de busca
         JPanel painelBusca = new JPanel(new FlowLayout(FlowLayout.LEFT));
         painelBusca.add(new JLabel("Buscar por paciente:"));
             painelBusca.setBackground(Color.WHITE);
@@ -121,10 +125,7 @@ public class Consultas extends JFrame {
         
         painel.add(painelBusca, BorderLayout.NORTH);
         
-<<<<<<< HEAD
-       
-=======
->>>>>>> 7e5af3e4cced2e35a2cea875fc0b1d00e742477e
+        // Tabela
         String[] colunas = {"ID", "Paciente", "Médico", "Data", "Hora", "Observações", "ID Paciente", "ID Médico"};
         modeloTabela = new DefaultTableModel(colunas, 0) {
             @Override
@@ -146,6 +147,7 @@ public class Consultas extends JFrame {
             }
         });
         
+        // Esconder colunas de ID
         tabela.getColumnModel().getColumn(6).setMinWidth(0);
         tabela.getColumnModel().getColumn(6).setMaxWidth(0);
         tabela.getColumnModel().getColumn(6).setWidth(0);
@@ -207,10 +209,7 @@ public class Consultas extends JFrame {
         mapPacientes.clear();
         mapMedicos.clear();
         
-<<<<<<< HEAD
-        
-=======
->>>>>>> 7e5af3e4cced2e35a2cea875fc0b1d00e742477e
+        // Carregar Pacientes com proteção null safe
         ArrayList<Paciente> pacientes = pacienteDao.listarTodos();
         if (pacientes != null) {
             for (Paciente p : pacientes) {
@@ -220,10 +219,7 @@ public class Consultas extends JFrame {
             }
         }
         
-<<<<<<< HEAD
-     
-=======
->>>>>>> 7e5af3e4cced2e35a2cea875fc0b1d00e742477e
+        // Carregar Médicos com proteção null safe
         ArrayList<Medico> medicos = medicoDao.listarTodos();
         if (medicos != null) {
             for (Medico m : medicos) {
@@ -234,7 +230,7 @@ public class Consultas extends JFrame {
         }
     }
     
-    
+    // --- MÉTODO CORRIGIDO ---
     private void carregarTabela() {
         modeloTabela.setRowCount(0);
         ArrayList<Consulta> lista = consultaDao.listar();
@@ -242,18 +238,13 @@ public class Consultas extends JFrame {
         if (lista == null) return; // Proteção extra se não houver lista
         
         for (Consulta c : lista) {
-<<<<<<< HEAD
-           
+            // Busca segura dos objetos relacionados
             Paciente p = pacienteDao.buscarPorId(c.getIdPaciente());
             Medico m = medicoDao.buscarPorId(c.getIdMedico());
             
-       
+            // Verifica se retornou null antes de acessar .getNome()
             String nomePaciente = (p != null) ? p.getNome() : "Paciente não encontrado (ID " + c.getIdPaciente() + ")";
             String nomeMedico = (m != null) ? m.getNome() : "Médico não encontrado (ID " + c.getIdMedico() + ")";
-=======
-            String nomePaciente = pacienteDao.buscarPorId(c.getIdPaciente()).getNome();
-            String nomeMedico = medicoDao.buscarPorId(c.getIdMedico()).getNome();
->>>>>>> 7e5af3e4cced2e35a2cea875fc0b1d00e742477e
             
             Object[] linha = {
                 c.getId(),
@@ -355,7 +346,7 @@ public class Consultas extends JFrame {
         if (lista == null) return;
         
         for (Consulta c : lista) {
-         
+            // Proteção também na busca
             Paciente p = pacienteDao.buscarPorId(c.getIdPaciente());
             String nomePaciente = (p != null) ? p.getNome() : "";
             
@@ -383,17 +374,11 @@ public class Consultas extends JFrame {
         if (linha != -1) {
             idSelecionado = (int) modeloTabela.getValueAt(linha, 0);
             
-<<<<<<< HEAD
-            
+            // Busca os IDs das colunas escondidas
             int idPaciente = (int) modeloTabela.getValueAt(linha, 6);
             int idMedico = (int) modeloTabela.getValueAt(linha, 7);
             
-            
-=======
-            int idPaciente = (int) modeloTabela.getValueAt(linha, 6);
-            int idMedico = (int) modeloTabela.getValueAt(linha, 7);
-            
->>>>>>> 7e5af3e4cced2e35a2cea875fc0b1d00e742477e
+            // Seleciona o item correto no ComboBox
             for (Map.Entry<String, Integer> entry : mapPacientes.entrySet()) {
                 if (entry.getValue().equals(idPaciente)) {
                     cmbPaciente.setSelectedItem(entry.getKey());
