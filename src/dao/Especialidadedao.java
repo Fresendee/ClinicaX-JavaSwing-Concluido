@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  */
 public class Especialidadedao {
     
-    // Inserir nova especialidade
+    
     public boolean inserir(Especialidade especialidade) {
         Connection conn = Conexao.conectar();
         String sql = "INSERT INTO especialidades (nome) VALUES (?)";
@@ -34,7 +34,7 @@ public class Especialidadedao {
         }
     }
     
-    // Atualizar especialidade existente
+    
     public boolean atualizar(Especialidade especialidade) {
         Connection conn = Conexao.conectar();
         String sql = "UPDATE especialidades SET nome=? WHERE id=?";
@@ -59,7 +59,7 @@ public class Especialidadedao {
         }
     }
     
-    // Excluir especialidade
+    // 
     public boolean excluir(int id) {
         Connection conn = Conexao.conectar();
         String sql = "DELETE FROM especialidades WHERE id=?";
@@ -83,7 +83,7 @@ public class Especialidadedao {
         }
     }
     
-    // Listar todas as especialidades
+    
     public ArrayList<Especialidade> listarTodos() {
         ArrayList<Especialidade> lista = new ArrayList<>();
         Connection conn = Conexao.conectar();
@@ -115,7 +115,7 @@ public class Especialidadedao {
         return lista;
     }
     
-    // Buscar especialidade por ID
+    
     public Especialidade buscarPorId(int id) {
         Connection conn = Conexao.conectar();
         String sql = "SELECT * FROM especialidades WHERE id=?";

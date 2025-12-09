@@ -25,17 +25,17 @@ public class DatabaseInitializer {
                                       "senha TEXT NOT NULL" +
                                       ");";
                 
-                // Executa a instrução SQL para usuários
+                
                 stmt.execute(sqlUsuarios);
                 
-                // Inserir usuário padrão (admin/admin) se não existir
+               
                 Usuariodao usuarioDao = new Usuariodao();
                 Usuario usuarioPadrao = new Usuario();
                 usuarioPadrao.setLogin("admin");
                 usuarioPadrao.setSenha("admin"); // Senha simples para demonstração
                 usuarioDao.inserir(usuarioPadrao);
                 
-                // SQL para criar a tabela de Pacientes
+                
                 String sqlPacientes = "CREATE TABLE IF NOT EXISTS pacientes (" +
                                       "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                                       "nome TEXT NOT NULL," +
@@ -47,7 +47,7 @@ public class DatabaseInitializer {
                                       "convenio TEXT" +
                                       ");";
                 
-                // SQL para criar a tabela de Médicos
+                
                 String sqlMedicos = "CREATE TABLE IF NOT EXISTS medicos (" +
                                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                                     "nome TEXT NOT NULL," +
@@ -58,7 +58,7 @@ public class DatabaseInitializer {
                                     "endereco TEXT" +
                                     ");";
                 
-                // SQL para criar a tabela de Consultas
+                
                 String sqlConsultas = "CREATE TABLE IF NOT EXISTS consultas (" +
                                       "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                                       "idPaciente INTEGER NOT NULL," +
@@ -70,13 +70,13 @@ public class DatabaseInitializer {
                                       "FOREIGN KEY(idMedico) REFERENCES medicos(id)" +
                                       ");";
                 
-                // SQL para criar a tabela de Especialidades
+               
                 String sqlEspecialidades = "CREATE TABLE IF NOT EXISTS especialidades (" +
                                            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                                            "nome TEXT UNIQUE NOT NULL" +
                                            ");";
                 
-                // SQL para criar a tabela de Atendimentos
+            
                 String sqlAtendimentos = "CREATE TABLE IF NOT EXISTS atendimentos (" +
                                         "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                                         "paciente_id INTEGER NOT NULL," +
@@ -97,7 +97,7 @@ public class DatabaseInitializer {
                                         "FOREIGN KEY(medico_id) REFERENCES medicos(id)" +
                                         ");";
                 
-                // SQL para criar a tabela de Prontuários
+             
                 String sqlProntuarios = "CREATE TABLE IF NOT EXISTS prontuarios (" +
                                        "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                                        "paciente_id INTEGER NOT NULL," +
@@ -128,7 +128,7 @@ public class DatabaseInitializer {
                                        "FOREIGN KEY(atendimento_id) REFERENCES atendimentos(id)" +
                                        ");";
 
-                // Executa as instruções SQL
+                
                 stmt.execute(sqlPacientes);
                 stmt.execute(sqlMedicos);
                 stmt.execute(sqlConsultas);

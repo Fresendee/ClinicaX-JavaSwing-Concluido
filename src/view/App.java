@@ -63,7 +63,7 @@ public class App extends JFrame {
         // Cor Secundária (Laranja/Marrom)
         Color corSecundaria = new Color(200, 100, 50);
         // Cor Neutra (Cinza Escuro)
-        Color corNeutra = new Color(50, 50, 50);
+        Color corNeutra = new Color(51, 50, 50);
         // Fundo do Card (Branco)
         Color fundoCard = Color.WHITE;
         
@@ -112,7 +112,7 @@ public class App extends JFrame {
      
         // Painel de Rodapé
         JPanel painelRodape = new JPanel();
-        painelRodape.setBackground(new Color(90, 70, 200)); // Roxo escuro
+        painelRodape.setBackground(new Color(90, 70, 201)); // Roxo escuro
         JLabel lblRodape = new JLabel("© 2025 Clinicax - Sistema de Gerenciamento Médico");
         lblRodape.setForeground(Color.WHITE);
         painelRodape.add(lblRodape);
